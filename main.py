@@ -6,7 +6,7 @@ app = Flask(__name__)
 def about(query):
     rocq = subprocess.run(
         ['coqtop'],
-        input='From mathcomp Require Import all_ssreflect.\nAbout {query}.\n',
+        input='From mathcomp Require Import all_ssreflect all_analysis.\nAbout {query}.\n',
         text=True,
         capture_output=True,
         check=True
