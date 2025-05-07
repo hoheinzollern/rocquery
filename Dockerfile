@@ -1,16 +1,17 @@
 # FROM mathcomp/mathcomp:2.4.0-coq-8.20
 FROM coqorg/coq:latest
 
-RUN apt-get update && \
-    apt-get install -y python3-virtualenv
+RUN sudo apt-get update && \
+    sudo apt-get install -y python3-virtualenv
 
-RUN virtualenv -p python3 /opt/venv && \
-    . /opt/venv/bin/activate && \
+RUN virtualenv -p python3 /home/coq/venv && \
+    . /home/coq/venv/bin/activate && \
     pip install --upgrade pip && \
     pip install flask
 
-COPY main.py /opt/main.py
+COPY main.py /home/coq/main.py
+COPY run.sh /home/coq/run.sh
 
 EXPOSE 5000
 
-CMD ["python3", "/opt/main.py"]
+CMD ["sh", "/home/coq/run.sh"]
