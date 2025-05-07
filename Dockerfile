@@ -3,6 +3,8 @@ FROM mathcomp/mathcomp:2.4.0-rocq-prover-9.0
 RUN sudo apt-get update && \
     sudo apt-get install -y python3-virtualenv
 
+RUN opam install -y coq-mathcomp-analysis
+
 WORKDIR /home/coq
 
 RUN virtualenv -p python3 venv
