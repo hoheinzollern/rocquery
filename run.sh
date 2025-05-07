@@ -7,4 +7,4 @@ fi
 
 . ./venv/bin/activate
 
-python3 main.py
+gunicorn -w 1 'main:app' --bind 0.0.0.0

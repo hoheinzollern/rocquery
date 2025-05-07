@@ -1,3 +1,5 @@
+# ideally we should be using one of the mathcomp images
+# see: https://hub.docker.com/r/mathcomp/mathcomp
 # FROM mathcomp/mathcomp:2.4.0-coq-8.20
 FROM coqorg/coq:latest
 
@@ -7,11 +9,11 @@ RUN sudo apt-get update && \
 RUN virtualenv -p python3 /home/coq/venv && \
     . /home/coq/venv/bin/activate && \
     pip install --upgrade pip && \
-    pip install flask
+    pip install flask gunicorn
 
 COPY main.py /home/coq/main.py
 COPY run.sh /home/coq/run.sh
 
-EXPOSE 5000
+WORKDIR /home/coq
 
 CMD ["sh", "/home/coq/run.sh"]
